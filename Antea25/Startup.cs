@@ -42,6 +42,7 @@ namespace Antea25
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UsePathBase("/antea25");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -61,7 +62,7 @@ namespace Antea25
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller}/{action=Index}/{id?}");
             });
         }
     }
