@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div ng-app="MyApp" ng-controller="locController" class="custom-container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Day</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>Map</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="position in gpsPositionList" ng-cloak>
+                <td>{{position.gpsPositionDate |date : "H:mm:ss" }}</td>
+                <td>{{position.gpsPositionDate |date : "dd/MM/y" }}</td>
+                <td>{{position.gpsPositionLatitude}}</td>
+                <td>{{position.gpsPositionLongitude}}</td>
+                <td><span class="btn-label" style="color:darkorange;cursor:pointer" uib-tooltip="Show on the map" uib-tooltip-placement="left" ng-click="showOnMap($index)"><i class="glyphicon glyphicon-map-marker"></i></span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <my-map latitude ="displayPosition.gpsPositionLatitude" longitude ="displayPosition.gpsPositionLongitude" time="04/09/2017"></my-map>
+
+
+    @*<div id="googleMap" style="width:100%;height:400px;margin-top:10px"></div>*@
+    @*<script>
+            function initMap() {
+
+                var myPosition = new google.maps.LatLng(51.508742, -0.120850);
+
+                var map  = {
+                    center: myPosition,
+                    zoom: 15,
+                };
+
+                var map = new google.maps.Map(document.getElementById("googleMap"), map);
+
+                var marker = new google.maps.Marker({
+                    position: myPosition,
+                    map: map,
+                    title: 'Your bike is here!'
+                });
+            }
+        </script>*@
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPp2iGXnZSJzAgM9Np6PW-TApAAXTbP8w"></script>
+
+</div>
+@section Scripts {
+    <script src="~/app/app.js" asp-append-version="true"></script>
+    <script src="~/app/apiService.js" asp-append-version="true"></script>
+    <script src="~/app/loc/index.js" asp-append-version="true"></script>
+    <script src="~/app/mapDirective.js" asp-append-version="true"></script>
+    <script language="javascript">
+    </script>
+}

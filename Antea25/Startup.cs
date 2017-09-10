@@ -60,9 +60,16 @@ namespace Antea25
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                //For production
+                // routes.MapRoute(
+                //     name: "default",
+                //     template: "{controller}/{action=Index}/{id?}");
+
+
+                //For dev
+                 routes.MapRoute(
+                     name: "default",
+                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
