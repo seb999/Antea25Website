@@ -29,8 +29,15 @@ namespace Antea25.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        /// <summary>
+        /// usage example : host/api/Loc/a17767b1-820f-4f0b-948b-acd9cd1a242a/123/456
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="latitude"></param>
+        /// <param name="longitude"></param>
+        /// <returns></returns>
         [HttpGet]
-        [Route("/api/[controller]/data/{userId}/{latitude}/{longitude}")]
+        [Route("/api/[controller]/{userId}/{latitude}/{longitude}")]
         public string SaveGpsData(string userId, float latitude, float longitude)
         {
             GpsPosition GpsData = new GpsPosition()
