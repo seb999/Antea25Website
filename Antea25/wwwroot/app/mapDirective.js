@@ -47,7 +47,7 @@
                     center: new google.maps.LatLng(scope.latitude, scope.longitude),
                     zoom: 15,
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    scrollwheel: false
+                    scrollwheel: true
                 };
 
                 map = new google.maps.Map(element[0], mapOptions);

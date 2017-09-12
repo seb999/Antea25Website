@@ -2,7 +2,12 @@
     ViewData["Title"] = "Home Page";
 }
 
-
+<style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
 <div style="height:800px;margin:-15px !important;margin-bottom:-20px !important; background-size:cover; position:relative; background-image:url('images/splash.jpg')">
 
     <div id="myCarousel" class="carousel slide img-responsive" data-ride="carousel" data-interval="4000">
@@ -55,14 +60,19 @@
             <source src="~/images/Antea25_clip.mp4" type="video/mp4" />
             </video>
         </div>
-       
-
     </div>
     
 </div>
-<div style="height:80px"></div>
+<div style="height:110px"></div>
 
-<div style="height:600px;margin:-15px !important;margin-bottom:-20px !important; background-size:cover; position:relative; background-image:url('images/localisation.png')">
+@*<div style="height:600px;margin:-15px !important;margin-bottom:-20px !important; background-size:cover; position:relative; background-image:url('images/localisation.png')">
 
-</div>
-<div style="height:20px"></div>
+</div>*@
+<div class="container text-center">
+    <img src="~/images/loc.jpg" width="1500" style="margin-bottom:60px;box-shadow: 10px 10px 5px #808080" />
+
+    <div ><img src="~/images/prototype.jpg" width="350" style="box-shadow: 10px 10px 5px #808080" /></div>
+    
+    </div>
+
+    <div style="height:20px"></div>
