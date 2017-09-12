@@ -42,7 +42,7 @@ namespace Antea25.Controllers
         {
             GpsPosition GpsData = new GpsPosition()
             {
-                UserId = User.Claims.FirstOrDefault().Value,
+                UserId = userId,
                 GpsPositionLatitude = latitude,
                 GpsPositionLongitude = longitude,
                 GpsPositionDate = DateTime.Now,
