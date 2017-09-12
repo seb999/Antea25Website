@@ -7,28 +7,14 @@
         scope: {
             longitude: '=',
             latitude: '=',
+            reload: '=',
             time: '@',
         },
         link:  function (scope, element, attrs) {
             var map, infoWindow;
             var markers = [];
 
-            // map config
-            var mapOptions = {
-                center: new google.maps.LatLng(scope.latitude, scope.longitude),
-                zoom: 15,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                scrollwheel: false
-            };
-
-            // init the map
-            function initMap() {
-                if (map === void 0) {
-                    map = new google.maps.Map(element[0], mapOptions);
-                }
-            }
-
-            // place a marker
+            // marker
             function setMarker(map, position, title, content) {
                 var marker;
                 var markerOptions = {
@@ -55,12 +41,33 @@
                 });
             }
 
+            // init the map
+            function initMap() {
+                var mapOptions = {
+                    center: new google.maps.LatLng(scope.latitude, scope.longitude),
+                    zoom: 15,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    scrollwheel: false
+                };
+
+                map = new google.maps.Map(element[0], mapOptions);
+                //if (map === void 0) {
+                //    map = new google.maps.Map(element[0], mapOptions);
+                //}
+                setMarker(map, new google.maps.LatLng(scope.latitude, scope.longitude), 'info', scope.time.concat(" your bike is here"));
+            }
+
+          
+
             // show the map and place some markers
+            
             initMap();
 
-            setMarker(map, new google.maps.LatLng(scope.latitude, scope.longitude), 'info', scope.time.concat(" your bike is here"));
-           // setMarker(map, new google.maps.LatLng(52.370216, 4.895168), 'Amsterdam', 'More content');
-            //setMarker(map, new google.maps.LatLng(48.856614, 2.352222), 'Paris', 'Text here');
+            scope.$watch("reload", function () {
+                initMap();
+                
+            });
+
         }
     };
 });

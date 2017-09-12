@@ -17,6 +17,7 @@
 
     function showOnMap(index) {
         $scope.displayPosition = $scope.gpsPositionList[index];
+        $scope.reloadMap = $scope.gpsPositionList[index].gpsPositionLongitude + $scope.gpsPositionList[index].gpsPositionLatitude;
     }
 
 });
