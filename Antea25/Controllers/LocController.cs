@@ -40,6 +40,9 @@ namespace Antea25.Controllers
         [Route("/api/[controller]/{userId}/{latitude}/{longitude}")]
         public string SaveGpsData(string userId, float latitude, float longitude)
         {
+            if(DbContext.Users.Where(p=>p.Id == userId).FirstOrDefault()==null)
+                return "unknown userId";
+                
             GpsPosition GpsData = new GpsPosition()
             {
                 UserId = userId,
@@ -51,6 +54,18 @@ namespace Antea25.Controllers
             DbContext.Add(GpsData);
             DbContext.SaveChanges();
             return "Saved";
+        }
+
+        [HttpPost]
+        [Route("/api/[controller]/SaveGpsData")]
+        public string SaveGps(GpsPosition position){
+            if(DbContext.Users.Where(p=>p.Id == position.UserId).FirstOrDefault()==null)
+                return "unknown userId";
+
+            DbContext.Add(position);
+            DbContext.SaveChanges();
+            return "Saved";
+
         }
 
         [HttpGet]
