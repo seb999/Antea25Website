@@ -9,12 +9,6 @@
         gpsPositionLongitude : "2.35222"
     };
 
-
-
-    $scope.ttt = {};
-    $scope.ttt.gpsPositionSelection = [];
-    $scope.ttt.gpsPositionSelection.push({ lat: "48.8566", long: "2.35222"})
-
     $scope.loadData();
 
     function loadData() {

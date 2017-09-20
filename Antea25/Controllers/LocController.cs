@@ -29,6 +29,21 @@ namespace Antea25.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        ///Check if sensor is moving for APP
+        /// usage example : host/api/Loc/IsSensorMoving/a17767b1-820f-4f0b-948b-acd9cd1a242a/2016-12-01T00:00:00
+        [HttpGet]
+        [Route("/api/[controller]/GetMotion/{userId}/{fromThisDate}")]
+        public bool GetMotion(string userId, DateTime fromThisDate)
+        {
+            if(DbContext.Users.Where(p=>p.Id == userId).FirstOrDefault()==null)
+                return false;
+            
+            if (DbContext.GpsPosition.Where(p=>p.UserId==userId && DateTime.Compare(p.GpsPositionDate, fromThisDate) >0).Count() >0)
+            return true;
+            else
+            return false;
+        }
+
         /// <summary>
         /// usage example : host/api/Loc/a17767b1-820f-4f0b-948b-acd9cd1a242a/123/456
         /// </summary>
