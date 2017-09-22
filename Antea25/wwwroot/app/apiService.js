@@ -2,9 +2,9 @@
 
     var apiService = {};
 
-    apiService.getLocData = function () {
+    apiService.getLocData = function (userId) {
         return $http({
-            url: "api/loc/GetGpsData",
+            url: "api/loc/GetGpsData/" + null,
             method: "GET",
         })
     };

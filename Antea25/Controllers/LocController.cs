@@ -83,9 +83,10 @@ namespace Antea25.Controllers
 
         }
 
+        ///If called by App, we need to pass the userId as argument
         [HttpGet]
-        [Route("/api/[controller]/GetGpsData")]
-        public List<GpsPosition> GetGpsData()
+        [Route("/api/[controller]/GetGpsData/{userId}")]
+        public List<GpsPosition> GetGpsData(string userId)
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -93,8 +94,12 @@ namespace Antea25.Controllers
             }
             else
             {
-                return null;
+                if(userId!=null)
+                {
+                    return DbContext.GpsPosition.Where(p => p.UserId == userId).ToList();
+                }
             }
+            return null;
         }
 
 
