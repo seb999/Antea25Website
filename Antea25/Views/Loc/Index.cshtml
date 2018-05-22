@@ -8,8 +8,9 @@
             <tr>
                 <th>Time</th>
                 <th>Day</th>
-                <th>Longitude</th>
                 <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Raw data</th>
                 <th>Map</th>
             </tr>
         </thead>
@@ -19,6 +20,7 @@
                 <td>{{position.gpsPositionDate |date : "dd/MM/y" }}</td>
                 <td>{{position.gpsPositionLatitude}}</td>
                 <td>{{position.gpsPositionLongitude}}</td>
+                <td>{{position.gpsPositionDescription}}</td>
                 <td ng-if="position.clicked"><span class="btn-label" style="color:green;cursor:pointer" uib-tooltip="Remove from the map" uib-tooltip-placement="left" ng-click="removeOnMap($index, position)"><i class="glyphicon glyphicon-map-marker"></i></span></td>
                 <td ng-if="!position.clicked"><span class="btn-label" style="color:darkorange;cursor:pointer" uib-tooltip="Show on the map" uib-tooltip-placement="left" ng-click="showOnMap($index)"><i class="glyphicon glyphicon-map-marker"></i></span></td>
             </tr>

@@ -64,7 +64,26 @@ namespace Antea25.Controllers
                 GpsPositionLatitude = latitude,
                 GpsPositionLongitude = longitude,
                 GpsPositionDate = DateTime.Now,
+            };
+            DbContext.Add(GpsData);
+            DbContext.SaveChanges();
+            return "Saved";
+        }
 
+        ///Called by The Internet network
+        ///Transfer position of device to db
+        /// usage example : host/api/Loc/SaveData (use postman to simulate)
+        [HttpPost]
+        [Route("/api/[controller]/SaveData")]
+        public string SaveData([FromBody]object rawPayLoad){
+
+            GpsPosition GpsData = new GpsPosition()
+            {
+                UserId = "a17767b1-820f-4f0b-948b-acd9cd1a242a",
+                GpsPositionLatitude = 59.319170F,
+                GpsPositionLongitude = 18.038289F,
+                GpsPositionDate = DateTime.Now,
+                GpsPositionDescription = rawPayLoad.ToString()
             };
             DbContext.Add(GpsData);
             DbContext.SaveChanges();
@@ -90,13 +109,13 @@ namespace Antea25.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return DbContext.GpsPosition.Where(p => p.UserId == User.Claims.FirstOrDefault().Value).ToList();
+                return DbContext.GpsPosition.Where(p => p.UserId == User.Claims.FirstOrDefault().Value).OrderByDescending(p=>p.GpsPositionDate).ToList();
             }
             else
             {
                 if(userId!=null)
                 {
-                    return DbContext.GpsPosition.Where(p => p.UserId == userId).ToList();
+                    return DbContext.GpsPosition.Where(p => p.UserId == userId).OrderByDescending(p=>p.GpsPositionDate).ToList();
                 }
             }
             return null;
