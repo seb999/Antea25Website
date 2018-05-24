@@ -4,11 +4,6 @@
     $scope.removeOnMap = removeOnMap;
     $scope.selectedGpsList = [];
     
-    $scope.displayPosition = {
-        gpsPositionLatitude : "48.8566",
-        gpsPositionLongitude : "2.35222"
-    };
-
     $scope.loadData();
 
     function loadData() {
@@ -26,14 +21,12 @@
     };
 
     function showOnMap(index) {
-       // $scope.displayPosition = $scope.gpsPositionList[index];
         $scope.gpsPositionList[index].clicked = true;
         $scope.selectedGpsList.push($scope.gpsPositionList[index]);
         $scope.reloadMap = $scope.gpsPositionList[index].gpsPositionLongitude + $scope.gpsPositionList[index].gpsPositionLatitude;
     }
 
     function removeOnMap(buttonIndex,item) {
-        //$scope.displayPosition = $scope.gpsPositionList[index];
         $scope.gpsPositionList[buttonIndex].clicked = false;
         var index = $scope.selectedGpsList.indexOf(item);
         $scope.selectedGpsList.splice(index, 1);

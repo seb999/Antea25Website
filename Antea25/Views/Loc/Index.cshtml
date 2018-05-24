@@ -3,33 +3,38 @@
 }
 
 <div ng-app="MyApp" ng-controller="locController" class="custom-container">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Time</th>
-                <th>Day</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-                <th>Raw data</th>
-                <th>Map</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="position in gpsPositionList" ng-cloak>
-                <td>{{position.gpsPositionDate |date : "H:mm:ss" }}</td>
-                <td>{{position.gpsPositionDate |date : "dd/MM/y" }}</td>
-                <td>{{position.gpsPositionLatitude}}</td>
-                <td>{{position.gpsPositionLongitude}}</td>
-                <td>{{position.gpsPositionDescription}}</td>
-                <td ng-if="position.clicked"><span class="btn-label" style="color:green;cursor:pointer" uib-tooltip="Remove from the map" uib-tooltip-placement="left" ng-click="removeOnMap($index, position)"><i class="glyphicon glyphicon-map-marker"></i></span></td>
-                <td ng-if="!position.clicked"><span class="btn-label" style="color:darkorange;cursor:pointer" uib-tooltip="Show on the map" uib-tooltip-placement="left" ng-click="showOnMap($index)"><i class="glyphicon glyphicon-map-marker"></i></span></td>
-            </tr>
-        </tbody>
-    </table>
-    <my-map gpslist="selectedGpsList" latitude ="displayPosition.gpsPositionLatitude" longitude ="displayPosition.gpsPositionLongitude" time="04/09/2017" reload="reloadMap" style="height:800px"></my-map>
+    
+    <div class='row' style="margin-top:20px">
+        <div class='col-sm-6'>
+              <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Day</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Map</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="position in gpsPositionList" ng-cloak>
+                        <td>{{position.gpsPositionDate |date : "H:mm:ss" }}</td>
+                        <td>{{position.gpsPositionDate |date : "dd/MM/y" }}</td>
+                        <td>{{position.gpsPositionLatitude}}</td>
+                        <td>{{position.gpsPositionLongitude}}</td>
+                        <td ng-if="position.clicked"><span class="btn-label" style="color:green;cursor:pointer" uib-tooltip="Remove from the map" uib-tooltip-placement="left" ng-click="removeOnMap($index, position)"><i class="glyphicon glyphicon-map-marker"></i></span></td>
+                        <td ng-if="!position.clicked"><span class="btn-label" style="color:darkorange;cursor:pointer" uib-tooltip="Show on the map" uib-tooltip-placement="left" ng-click="showOnMap($index)"><i class="glyphicon glyphicon-map-marker"></i></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPp2iGXnZSJzAgM9Np6PW-TApAAXTbP8w"></script>
+        <div class='col-sm-6 fixed-panel-left' style="position: sticky;top:50px;">
+           <my-map gpslist="selectedGpsList" latitude ="displayPosition.gpsPositionLatitude" longitude ="displayPosition.gpsPositionLongitude" time="04/09/2017" reload="reloadMap" style="height:800px; position:fixed"></my-map>
 
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPp2iGXnZSJzAgM9Np6PW-TApAAXTbP8w"></script>
+        </div>
+    </div>
 </div>
 @section Scripts {
     <script src="~/app/app.js" asp-append-version="true"></script>

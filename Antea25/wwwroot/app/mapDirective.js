@@ -23,7 +23,7 @@
                 var mapOptions = {
                     //center: new google.maps.LatLng(scope.latitude, scope.longitude),
                     center: new google.maps.LatLng(scope.gpslist[0].gpsPositionLatitude, scope.gpslist[0].gpsPositionLongitude),
-                    zoom: 15,
+                    zoom: 14,
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                     scrollwheel: true
                 };
@@ -36,7 +36,6 @@
                     setMarker(map, new google.maps.LatLng(scope.gpslist[i].gpsPositionLatitude, scope.gpslist[i].gpsPositionLongitude), 'info', scope.time.concat(" your bike was here"));
 
                     if (i > 0 && i < scope.gpslist.length) {
-                        console.log("add ways points");
                         waypts.push({
                             location: new google.maps.LatLng(scope.gpslist[i].gpsPositionLatitude, scope.gpslist[i].gpsPositionLongitude),
                             stopover: true,
@@ -45,7 +44,8 @@
                 }
 
                 //we show the route
-                calcRoute(scope.gpslist[0], scope.gpslist[scope.gpslist.length - 1]);
+                //IF THERE IS MORE THAN ONE POINT SELECTED THEN THIS METHOD SHOULS BE CALLED OTHERWISE NO
+               // calcRoute(scope.gpslist[0], scope.gpslist[scope.gpslist.length - 1]);
                 
             }
 
