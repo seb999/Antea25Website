@@ -77,13 +77,22 @@ namespace Antea25.Controllers
             {
                 UserId = "a17767b1-820f-4f0b-948b-acd9cd1a242a",
                 DeviceId = loraData.Dev_Id,
-                GpsPositionLatitude = loraData.Payload_fields.Latitude,
-                GpsPositionLongitude = loraData.Payload_fields.Longitude,
-                GpsPositionDate = DateTime.Now,
+                GpsPositionLatitude = DegreeToDecimal(loraData.Payload_fields.Latitude,loraData.Payload_fields.LatitudeDecimal),
+                GpsPositionLongitude = DegreeToDecimal(loraData.Payload_fields.Longitude,loraData.Payload_fields.LongitudeDecimal),
+                GpsPositionDate = loraData.Metadata.Time,
             };
             DbContext.Add(GpsData);
             DbContext.SaveChanges();
             return "Saved";
+        }
+
+        public float DegreeToDecimal(int DegreeMinute, int decimalMinute)
+        {
+            int degree = DegreeMinute/100;
+            float minute = (float)(DegreeMinute % 100)+ (float)decimalMinute/100000;
+            float minuteDecimal = minute/60;
+            float toto = degree + minuteDecimal;
+            return degree + minuteDecimal;
         }
       
         // POST: Localisation/Edit/5
