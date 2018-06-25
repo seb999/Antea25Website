@@ -45,7 +45,7 @@
 
                 //we show the route
                 //IF THERE IS MORE THAN ONE POINT SELECTED THEN THIS METHOD SHOULS BE CALLED OTHERWISE NO
-               // calcRoute(scope.gpslist[0], scope.gpslist[scope.gpslist.length - 1]);
+               if(scope.gpslist.length>1) calcRoute(scope.gpslist[0], scope.gpslist[scope.gpslist.length - 1]);
                 
             }
 

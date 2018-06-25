@@ -80,19 +80,31 @@ namespace Antea25.Controllers
                 GpsPositionLatitude = DegreeToDecimal(loraData.Payload_fields.Latitude,loraData.Payload_fields.LatitudeDecimal),
                 GpsPositionLongitude = DegreeToDecimal(loraData.Payload_fields.Longitude,loraData.Payload_fields.LongitudeDecimal),
                 GpsPositionDate = loraData.Metadata.Time,
+
+                //For debugging
+                GpsPositionLatitudeRaw = string.Format("{0}.{1}",loraData.Payload_fields.Latitude,loraData.Payload_fields.LatitudeDecimal),
+                GpsPositionLongitudeRaw = string.Format("{0}.{1}",loraData.Payload_fields.Longitude,loraData.Payload_fields.LongitudeDecimal)
             };
             DbContext.Add(GpsData);
             DbContext.SaveChanges();
             return "Saved";
         }
 
-        public float DegreeToDecimal(int DegreeMinute, int decimalMinute)
+        // public float DegreeToDecimal(int DegreeMinute, int decimalMinute)
+        // {
+        //     int degree = DegreeMinute/100;
+        //     float minute = (float)(DegreeMinute % 100)+ (float)decimalMinute/100000;
+        //     float minuteDecimal = minute/60;
+        //     float toto = degree + minuteDecimal;
+        //     return degree + minuteDecimal;
+        // }
+
+        public float DegreeToDecimal(int degreeMinute, int decimalMinute)
         {
-            int degree = DegreeMinute/100;
-            float minute = (float)(DegreeMinute % 100)+ (float)decimalMinute/100000;
-            float minuteDecimal = minute/60;
-            float toto = degree + minuteDecimal;
-            return degree + minuteDecimal;
+            //Calculation ex: 5919.12925 -> 59 + 19.12925/60
+            int degree = degreeMinute/100;
+            float minute = ((float)(degreeMinute % 100) + (float)(decimalMinute)/100000)/60;
+            return degree + minute;
         }
       
         // POST: Localisation/Edit/5

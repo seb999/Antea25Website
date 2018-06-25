@@ -13,5 +13,8 @@ namespace Antea25.Models
         public float GpsPositionLatitude { get; set; }
         public float GpsPositionLongitude { get; set; }
         public DateTime GpsPositionDate { get; set; }
+
+        public string GpsPositionLatitudeRaw { get; set; }
+        public string GpsPositionLongitudeRaw { get; set; }
     }
 }
