@@ -38,7 +38,8 @@ namespace Antea25.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return DbContext.GpsPosition.Where(p => p.UserId == User.Claims.FirstOrDefault().Value).OrderByDescending(p=>p.GpsPositionDate).ToList();
+                // return DbContext.GpsPosition.Where(p => p.UserId == User.Claims.FirstOrDefault().Value).OrderByDescending(p=>p.GpsPositionDate).ToList();
+                return DbContext.GpsPosition.Where(p => p.Device.UserId == User.Claims.FirstOrDefault().Value).OrderByDescending(p=>p.GpsPositionDate).ToList();
             }
             else
             {

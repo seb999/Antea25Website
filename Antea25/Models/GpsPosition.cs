@@ -16,5 +16,7 @@ namespace Antea25.Models
 
         public string GpsPositionLatitudeRaw { get; set; }
         public string GpsPositionLongitudeRaw { get; set; }
+
+         public Device Device { get; set; }
     }
 }
