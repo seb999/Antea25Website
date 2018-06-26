@@ -17,6 +17,7 @@ namespace Antea25.Data
         }
 
         public virtual DbSet<GpsPosition> GpsPosition { get; set; }
+        public virtual DbSet<Device> Device { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

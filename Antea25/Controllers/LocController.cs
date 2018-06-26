@@ -45,7 +45,7 @@ namespace Antea25.Controllers
             {
                 if(userId!=null)
                 {
-                    return DbContext.GpsPosition.Where(p => p.UserId == userId).OrderByDescending(p=>p.GpsPositionDate).ToList();
+                    return DbContext.GpsPosition.Where(p => p.Device.UserId == User.Claims.FirstOrDefault().Value).OrderByDescending(p=>p.GpsPositionDate).ToList();
                 }
             }
             return null;
@@ -74,10 +74,13 @@ namespace Antea25.Controllers
         public string SaveData([FromBody]JObject rawPayLoad){
             RawPayLoad loraData = JsonConvert.DeserializeObject<RawPayLoad>(rawPayLoad.ToString());
 
+            int deviceId = DbContext.Device.Where(p => p.DeviceEUI == loraData.Hardware_serial).Select(p => p.DeviceId).FirstOrDefault();
+
             GpsPosition GpsData = new GpsPosition()
             {
-                UserId = "a17767b1-820f-4f0b-948b-acd9cd1a242a",
-                DeviceId = loraData.Dev_Id,
+                //UserId = "a17767b1-820f-4f0b-948b-acd9cd1a242a",
+                //DeviceId = loraData.Dev_Id,
+                DeviceId = deviceId,
                 GpsPositionLatitude = DegreeToDecimal(loraData.Payload_fields.Latitude,loraData.Payload_fields.LatitudeDecimal),
                 GpsPositionLongitude = DegreeToDecimal(loraData.Payload_fields.Longitude,loraData.Payload_fields.LongitudeDecimal),
                 GpsPositionDate = loraData.Metadata.Time,

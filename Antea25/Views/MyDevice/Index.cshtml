@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "My Device Page";
+}
+
+<div ng-app="MyApp" ng-controller="myDeviceController" class="custom-container">
+
+    <div style="float:left">
+        <button ng-show="!isAddMode" style="margin-right:5px;margin-left:5px;margin-top:15px" type="button" class="btn btn-labeled btn-default btn-sm" ng-click="addNewDevice();">
+            <span class="btn-label btn-lg"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i> Register device</span>
+        </button>
+
+
+        <button ng-show="isAddMode" style="margin-right:5px;margin-left:5px;margin-top:15px" type="button" class="btn btn-labeled btn-warning btn-sm" ng-click="saveNewDevice();" ng-cloak>
+            <span class="btn-label btn-lg"><i class="glyphicon glyphicon-floppy-save" aria-hidden="true"></i> Save device</span>
+        </button>
+        </div>
+
+        <div style="float:left;margin-top:10px;margin-bottom:0px" class="alert alert-success " ng-class="{hidden: isSaved == true}" ng-Cloak role="alert">
+            <strong>Saved! </strong>You can start to use your new device
+        </div>
+  
+
+    <div style="clear:both"></div>
+
+        <div class='row' style="margin-top:20px">
+            <div class='col-sm-6'>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>EUI</th>
+                            <th>Description</th>
+                            <th>Date added</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="device in deviceList" ng-cloak>
+                            <td>
+                                <div>{{device.deviceId}}</div>
+                            </td>
+                            <td>
+                                <div ng-show="!device.isAddMode">{{device.deviceEUI}}</div>
+                                <div ng-show="device.isAddMode"><input value="{{device.deviceEUI}}" placeholder="Lora EUI"></div>
+                            </td>
+                            <td>
+                                <div ng-show="!device.isAddMode">{{device.deviceDescription}}</div>
+                                <div ng-show="device.isAddMode"><input value="{{device.deviceDescription}}" placeholder="Add description"></div>
+                            </td>
+                            <td>{{device.dateAdded |date : "dd/MM/y" }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        <script src="~/app/app.js" asp-append-version="true"></script>
+        <script src="~/app/apiService.js" asp-append-version="true"></script>
+        <script src="~/app/myDevice/index.js" asp-append-version="true"></script>
+        <script language="javascript">
+        </script>
+    }
