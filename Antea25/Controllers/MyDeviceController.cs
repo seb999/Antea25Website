@@ -18,7 +18,11 @@ namespace Antea25.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            return RedirectToAction("Login", "Account");
         }
 
         ///If called by App, we need to pass the userId as argument
@@ -28,23 +32,32 @@ namespace Antea25.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return DbContext.Device.Where(p => p.UserId == User.Claims.FirstOrDefault().Value).OrderByDescending(p => p.DeviceId).ToList();
+                return DbContext.Device
+                    .Where(p => p.UserId == User.Claims.FirstOrDefault().Value)
+                    .Where(p=>p.DeviceIsDeleted.GetValueOrDefault() != true)
+                    .OrderByDescending(p => p.DateAdded).ToList();
             }
             else
             {
                 if (userId != null)
                 {
-                    return DbContext.Device.Where(p => p.UserId == User.Claims.FirstOrDefault().Value).OrderByDescending(p => p.DeviceId).ToList();
+                    return DbContext.Device
+                        .Where(p => p.UserId == User.Claims.FirstOrDefault().Value)
+                        .Where(p => p.DeviceIsDeleted.GetValueOrDefault() != true)
+                        .OrderByDescending(p => p.DateAdded).ToList();
                 }
             }
             return null;
         }
 
         ///If called by App, we need to pass the userId as argument
-        [HttpGet]
-        [Route("/api/[controller]/SaveDeviceList/{userId}")]
-        public List<Device> SaveDeviceList(string userId)
+        [HttpPost]
+        [Route("/api/[controller]/SaveDevice")]
+        public List<Device> SaveDeviceList([FromBody] Device device)
         {
+            device.UserId = User.Claims.FirstOrDefault().Value;
+            DbContext.Add(device);
+            DbContext.SaveChanges();
             return null;
         }
     }

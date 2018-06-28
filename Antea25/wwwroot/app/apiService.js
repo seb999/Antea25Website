@@ -16,10 +16,14 @@
         })
     };
 
-    apiService.saveDeviceList = function (userId) {
+    apiService.saveDevice = function (device) {
         return $http({
-            url: "api/myDevice/saveDeviceList/" + null,
-            method: "GET",
+            url: "api/myDevice/SaveDevice",
+            method: "POST",
+            data: JSON.stringify(device),
+            contentType: 'application/json',
+            dataType: 'json',
+            headers: { 'Content-Type': 'application/json' }
         })
     };
 

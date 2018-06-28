@@ -11,9 +11,13 @@
 
 
         <button ng-show="isAddMode" style="margin-right:5px;margin-left:5px;margin-top:15px" type="button" class="btn btn-labeled btn-warning btn-sm" ng-click="saveNewDevice();" ng-cloak>
-            <span class="btn-label btn-lg"><i class="glyphicon glyphicon-floppy-save" aria-hidden="true"></i> Save device</span>
+            <span class="btn-label btn-lg"><i class="glyphicon glyphicon-save" aria-hidden="true"></i> Save device</span>
         </button>
-        </div>
+        <button ng-show="isAddMode" style="margin-right:5px;margin-left:5px;margin-top:15px" type="button" class="btn btn-labeled btn-danger btn-sm" ng-click="cancel();" ng-cloak>
+            <span class="btn-label btn-lg"><i class="glyphicon glyphicon-repeat" aria-hidden="true"></i> Cancel</span>
+        </button>
+
+    </div>
 
         <div style="float:left;margin-top:10px;margin-bottom:0px" class="alert alert-success " ng-class="{hidden: isSaved == true}" ng-Cloak role="alert">
             <strong>Saved! </strong>You can start to use your new device
@@ -40,11 +44,11 @@
                             </td>
                             <td>
                                 <div ng-show="!device.isAddMode">{{device.deviceEUI}}</div>
-                                <div ng-show="device.isAddMode"><input value="{{device.deviceEUI}}" placeholder="Lora EUI"></div>
+                                <div ng-show="device.isAddMode"><input ng-model="device.deviceEUI" placeholder="Lora EUI"></div>
                             </td>
                             <td>
                                 <div ng-show="!device.isAddMode">{{device.deviceDescription}}</div>
-                                <div ng-show="device.isAddMode"><input value="{{device.deviceDescription}}" placeholder="Add description"></div>
+                                <div ng-show="device.isAddMode"><input ng-model="device.deviceDescription" placeholder="Add description"></div>
                             </td>
                             <td>{{device.dateAdded |date : "dd/MM/y" }}</td>
                         </tr>

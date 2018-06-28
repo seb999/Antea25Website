@@ -17,12 +17,12 @@
 
     function addNewDevice() {
         $scope.isAddMode = true;
-        var newDevice = { "deviceId": $scope.deviceList[$scope.deviceList.length - 1].deviceId + 1, "EUI": "", "Description": "Add description here", "dateAdded": new Date(), "isAddMode" : true}
+        var newDevice = { "deviceId": $scope.deviceList[$scope.deviceList.length - 1].deviceId + 1, "deviceEUI": "", "deviceDescription": "", "dateAdded": new Date(), "isAddMode" : true}
         $scope.deviceList.push(newDevice);
     };
 
     function saveNewDevice() {
-        apiService.saveDeviceList($scope.deviceList).then(function (response) {
+        apiService.saveDevice($scope.deviceList[$scope.deviceList.length - 1]).then(function (response) {
             $scope.isSaved = false;
             $scope.isAddMode = false;
             loadDeviceList();
@@ -32,5 +32,10 @@
                // $window.location.href = '/Activity/';
             }, 5000);
         }, function (error) { $log.error(error.message); });
+    };
+
+    $scope.cancel = function () {
+        $scope.isAddMode = false;
+        $scope.deviceList.splice(-1, 1);
     };
 });
