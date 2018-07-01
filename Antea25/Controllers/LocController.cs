@@ -92,12 +92,16 @@ namespace Antea25.Controllers
             return "Saved";
         }
 
-        public float DegreeToDecimal(int degreeMinute, int decimalMinute)
+        public decimal DegreeToDecimal(int degreeMinute, int decimalMinute)
         {
-            //Calculation ex: 5919.12925 -> 59 + 19.12925/60
+            //Calculation ex: 5919.12925 -> 59 + 19/60  + 12.925/3600
+            //DD = d + (min/60) + (sec/3600)
             int degree = degreeMinute/100;
-            float minute = ((float)(degreeMinute % 100) + (float)(decimalMinute)/100000)/60;
-            return degree + minute;
+            decimal minute = (decimal)(degreeMinute % 100)/60;
+            decimal second = 0;
+            if(decimalMinute>=10000) second = (decimal)(decimalMinute)/1000/3600;
+            if(decimalMinute<10000) second = (decimal)(decimalMinute)/100/3600;
+            return degree + minute + second;
         }
       
         // POST: Localisation/Edit/5

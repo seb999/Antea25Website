@@ -7,7 +7,8 @@
     $scope.loadData();
 
     function loadData() {
-        apiService.getLocData().then(function (response) {           
+        apiService.getLocData().then(function (response) {  
+            debugger;         
             $scope.gpsPositionList = response.data;
             $scope.gpsPositionList[0].clicked = true;
             for (i = 1; i < $scope.gpsPositionList.length; i++) {
