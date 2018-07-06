@@ -16,8 +16,8 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="custom-container">
+     <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="custom-container" >
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -39,15 +39,24 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid body-content">
+    <!-- Part 1: Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Begin page content -->
+       <div class="container-fluid body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - Antea25 - version 1.5</p>
-        </footer>
+        </div>
+
+      <div id="push"></div>
     </div>
 
-    <environment include="Development">
+    <footer id="footer" style="background-color: silver;padding: 10px;">
+             <img src="~/images/LoRaWAN.png" style="height:70px;" />
+             <img src="~/images/TheThingNetwork.svg" style="height:70px;" />
+            <p>&copy; 2018 - Antea25 - version 1.5</p>
+    </footer>
+
+     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
@@ -77,4 +86,24 @@
 
     @RenderSection("Scripts", required: false)
 </body>
+
+<!-- <body>
+   
+   
+    
+    <div class="container-fluid body-content">
+        @RenderBody()
+       <div id="push"></div>
+        
+    </div>
+    <footer id="footer" style="background-color: silver;padding: 10px;">
+             <img src="~/images/LoRaWAN.png" style="height:70px;" />
+             <img src="~/images/TheThingNetwork.svg" style="height:70px;" />
+            <p>&copy; 2018 - Antea25 - version 1.5</p>
+    </footer>
+ 
+     
+
+   
+</body> -->
 </html>
