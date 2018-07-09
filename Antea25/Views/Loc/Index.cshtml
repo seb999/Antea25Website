@@ -4,17 +4,28 @@
 
 <div ng-app="MyApp" ng-controller="locController" class="custom-container">
 
-    <div class='row' style="margin-top:20px">
-        <div class='col-sm-6 fixed-panel-left' >
-            <my-map gpslist="selectedGpsList" latitude="displayPosition.gpsPositionLatitude" longitude="displayPosition.gpsPositionLongitude" time="04/09/2017" reload="reloadMap" style="height:800px; position:fixed"></my-map>
+    <div class='row' style="margin-top:20px;">
+        <div class='col-sm-6 fixed-panel-left' style="margin-bottom: 20px">
+            <my-map gpslist="selectedGpsList" latitude="displayPosition.gpsPositionLatitude" longitude="displayPosition.gpsPositionLongitude" time="04/09/2017" reload="reloadMap" style="height:840px; position:fixed"></my-map>
 
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPp2iGXnZSJzAgM9Np6PW-TApAAXTbP8w"></script>
         </div>
 
         <div class='col-sm-6'>
+            <div class="row">
+                <div class="col-sm-3">
+                    <select class="mySelect form-control" ng-model="selectedDevice" ng-options="p.deviceDescription for p in deviceList" ng-change="filterTable()" style="max-width: 250px"></select>
+                </div>
+                <div class="col-sm-9">
+                    <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" items-per-page="itemsPerPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true" ng-click="pagination()" style="margin-bottom: 7px; margin-top: 7px"></ul>
+                </div>
+            </div>
+         
+             <div class="row">
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>Device</th>
                         <th>Time</th>
                         <th>Day</th>
                         <th>Latitude</th>
@@ -23,7 +34,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="position in gpsPositionList" ng-cloak>
+                    <tr ng-repeat="position in gpsPositionList|filter : f " ng-cloak>
+                        <td>{{position.deviceId}}</td>
                         <td>{{position.gpsPositionDate |date : "H:mm:ss" }}</td>
                         <td>{{position.gpsPositionDate |date : "dd/MM/y" }}</td>
                         <td>{{position.gpsPositionLatitude}}</td>
@@ -33,6 +45,7 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 </div>

@@ -30,7 +30,7 @@
                 $scope.isSaved = true;
                 $scope.deviceList[$scope.deviceList.length - 1].isAddMode = false;
                // $window.location.href = '/Activity/';
-            }, 5000);
+            }, 7000);
         }, function (error) { $log.error(error.message); });
     };
 

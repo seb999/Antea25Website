@@ -1,15 +1,32 @@
 ﻿myApp.controller('locController', function ($scope, $log, $http, $window, $timeout, apiService) {
+    
     $scope.loadData = loadData;
     $scope.showOnMap = showOnMap;
     $scope.removeOnMap = removeOnMap;
+    $scope.loadDeviceList = loadDeviceList;
     $scope.selectedGpsList = [];
+    $scope.filterTable = filterTable;
+    $scope.f = {};
     
     $scope.loadData();
+    $scope.loadDeviceList();
+
+    $scope.maxSize = 5;
+    $scope.bigCurrentPage = 1;
+    $scope.itemsPerPage = 20;
+
+    function loadDeviceList() {
+        apiService.getDeviceList().then(function (response) {           
+            $scope.deviceList = response.data;
+        }, function (error) { $log.error(error.message); });
+    };
 
     function loadData() {
-        apiService.getLocData().then(function (response) {  
-            debugger;         
-            $scope.gpsPositionList = response.data;
+        apiService.getLocData().then(function (response) {     
+            $scope.gpsPositionInitialList = response.data;
+            $scope.gpsPositionList = response.data.slice(0, 20);
+            $scope.bigTotalItems = response.data.length;
+
             $scope.gpsPositionList[0].clicked = true;
             for (i = 1; i < $scope.gpsPositionList.length; i++) {
                 $scope.gpsPositionList[i].clicked = false;
@@ -35,4 +52,17 @@
         $scope.reloadMap = $scope.selectedGpsList.length;
     }
 
+    function filterTable () {
+        $scope.loaderVisibility = true;
+
+        if ($scope.selectedDevice !== "") {
+            $scope.f.deviceId = $scope.selectedDevice.deviceId;
+        }
+
+        $scope.loaderVisibility = false;
+    }
+
+    $scope.pagination = function(){
+        $scope.gpsPositionList = $scope.gpsPositionInitialList.slice($scope.bigCurrentPage*20 - 20, $scope.bigCurrentPage*20);
+    }
 });
