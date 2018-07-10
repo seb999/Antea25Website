@@ -56,6 +56,8 @@
         $scope.loaderVisibility = true;
 
         if ($scope.selectedDevice !== "") {
+            debugger;
+            $scope.gpsPositionList = $scope.gpsPositionInitialList.filter(f=>f.deviceId === $scope.selectedDevice.deviceId)
             $scope.f.deviceId = $scope.selectedDevice.deviceId;
         }
 
@@ -63,6 +65,10 @@
     }
 
     $scope.pagination = function(){
-        $scope.gpsPositionList = $scope.gpsPositionInitialList.slice($scope.bigCurrentPage*20 - 20, $scope.bigCurrentPage*20);
+        debugger;
+        if($scope.selectedDevice ===undefined){
+            $scope.gpsPositionList = $scope.gpsPositionInitialList.slice($scope.bigCurrentPage*20 - 20, $scope.bigCurrentPage*20);
+        }
+        $scope.gpsPositionList = $scope.gpsPositionInitialList.filter(f=>f.deviceId === $scope.selectedDevice.deviceId).slice($scope.bigCurrentPage*20 - 20, $scope.bigCurrentPage*20);
     }
 });

@@ -34,7 +34,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="position in gpsPositionList|filter : f " ng-cloak>
+                    <!-- <tr ng-repeat="position in gpsPositionList|filter : f " ng-cloak> -->
+                    <tr ng-repeat="position in gpsPositionList" ng-cloak>
                         <td>{{position.deviceId}}</td>
                         <td>{{position.gpsPositionDate |date : "H:mm:ss" }}</td>
                         <td>{{position.gpsPositionDate |date : "dd/MM/y" }}</td>

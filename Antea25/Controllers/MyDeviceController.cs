@@ -44,7 +44,7 @@ namespace Antea25.Controllers
                     return DbContext.Device
                         .Where(p => p.UserId == User.Claims.FirstOrDefault().Value)
                         .Where(p => p.DeviceIsDeleted.GetValueOrDefault() != true)
-                        .OrderByDescending(p => p.DateAdded).ToList();
+                        .OrderBy(p => p.DateAdded).ToList();
                 }
             }
             return null;
