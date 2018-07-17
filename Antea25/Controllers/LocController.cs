@@ -18,7 +18,6 @@ namespace Antea25.Controllers
         public LocController([FromServices] ApplicationDbContext appDbContext)
         {
             DbContext = appDbContext;
-            //var userId = User.Claims.FirstOrDefault().Value;
         }
 
         // GET: Localisation
@@ -30,6 +29,8 @@ namespace Antea25.Controllers
             }
             return RedirectToAction("Login", "Account");
         }
+
+        #region method for Application
 
          ///If called by App, we need to pass the userId as argument
         [HttpGet]
@@ -49,21 +50,6 @@ namespace Antea25.Controllers
                 }
             }
             return null;
-        }
-
-        ///Check if sensor is moving for APP
-        /// usage example : host/api/Loc/IsSensorMoving/a17767b1-820f-4f0b-948b-acd9cd1a242a/2016-12-01T00:00:00
-        [HttpGet]
-        [Route("/api/[controller]/GetMotion/{userId}/{fromThisDate}")]
-        public bool GetMotion(string userId, DateTime fromThisDate)
-        {
-            if(DbContext.Users.Where(p=>p.Id == userId).FirstOrDefault()==null)
-                return false;
-            
-            if (DbContext.GpsPosition.Where(p=>p.UserId==userId && DateTime.Compare(p.GpsPositionDate, fromThisDate) >0).Count() >0)
-            return true;
-            else
-            return false;
         }
 
         ///Called by The Internet network
@@ -104,22 +90,35 @@ namespace Antea25.Controllers
             return degree + minute + second;
         }
       
-        // POST: Localisation/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+      #endregion
+    
+        #region methods for APP android or Ios
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+        ///Check if sensor is moving for APP
+        /// usage example : host/api/Loc/IsSensorMoving/deviceEUI/2016-12-01T00:00:00
+        [HttpGet]
+        [Route("/api/[controller]/GetMotion/{deviceEUI}/{fromThisDate}")]
+        public bool GetMotion(string deviceEUI, DateTime fromThisDate)
+        {
+            Boolean result;
+            if(DbContext.Device.Where(p=>p.DeviceEUI == deviceEUI).FirstOrDefault()==null)
+                return false;
+            
+            if (DbContext.GpsPosition.Where(p=>p.Device.DeviceEUI == deviceEUI && DateTime.Compare(p.GpsPositionDate, fromThisDate) >0).Count() >0)
+            result =  true;
+            else
+            result = false;
+
+            return result;
         }
 
+        [HttpGet]
+        [Route("/api/[controller]/GetGps/{deviceEUI}")]
+        public List<GpsPosition> GetGps(string deviceEUI)
+        {
+            return DbContext.GpsPosition.Where(p => p.Device.DeviceEUI == deviceEUI).OrderByDescending(p=>p.GpsPositionDate).ToList();
+        }
+
+        #endregion
     }
 }
