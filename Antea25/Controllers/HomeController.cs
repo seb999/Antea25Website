@@ -24,7 +24,7 @@ namespace Antea25.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Sebastien Dubos";
+            ViewData["Message"] = "ANTEA25";
 
             return View();
         }
