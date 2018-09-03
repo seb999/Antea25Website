@@ -46,3 +46,15 @@ C:\Users\sdubos\source\repos\Antea25Website\Antea25\obj\Debug\netcoreapp2.0\Ante
 C:\Users\sdubos\source\repos\Antea25Website\Antea25\obj\Debug\netcoreapp2.0\Antea25.AssemblyInfo.cs
 C:\Users\sdubos\source\repos\Antea25Website\Antea25\obj\Debug\netcoreapp2.0\Antea25.dll
 C:\Users\sdubos\source\repos\Antea25Website\Antea25\obj\Debug\netcoreapp2.0\Antea25.pdb
+C:\Projects\Antea25\Antea25Website\Antea25\bin\Debug\netcoreapp2.0\Antea25.deps.json
+C:\Projects\Antea25\Antea25Website\Antea25\bin\Debug\netcoreapp2.0\Antea25.runtimeconfig.json
+C:\Projects\Antea25\Antea25Website\Antea25\bin\Debug\netcoreapp2.0\Antea25.runtimeconfig.dev.json
+C:\Projects\Antea25\Antea25Website\Antea25\bin\Debug\netcoreapp2.0\Antea25.dll
+C:\Projects\Antea25\Antea25Website\Antea25\bin\Debug\netcoreapp2.0\Antea25.pdb
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Debug\netcoreapp2.0\Antea25.csproj.CoreCompileInputs.cache
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Debug\netcoreapp2.0\Antea25.AssemblyInfoInputs.cache
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Debug\netcoreapp2.0\Antea25.AssemblyInfo.cs
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Debug\netcoreapp2.0\Antea25.dll
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Debug\netcoreapp2.0\Antea25.pdb
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Debug\netcoreapp2.0\Antea25.csprojAssemblyReference.cache

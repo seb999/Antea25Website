@@ -15,7 +15,7 @@ namespace Antea25.Data
             : base(options)
         {
         }
-
+        public virtual DbSet<TrackedObject> TrackedObject { get; set; }
         public virtual DbSet<GpsPosition> GpsPosition { get; set; }
         public virtual DbSet<Device> Device { get; set; }
 

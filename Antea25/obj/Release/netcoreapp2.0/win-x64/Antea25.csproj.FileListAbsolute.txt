@@ -1,0 +1,12 @@
+C:\Projects\Antea25\Antea25Website\Antea25\bin\Release\netcoreapp2.0\win-x64\Antea25.deps.json
+C:\Projects\Antea25\Antea25Website\Antea25\bin\Release\netcoreapp2.0\win-x64\Antea25.runtimeconfig.json
+C:\Projects\Antea25\Antea25Website\Antea25\bin\Release\netcoreapp2.0\win-x64\Antea25.runtimeconfig.dev.json
+C:\Projects\Antea25\Antea25Website\Antea25\bin\Release\netcoreapp2.0\win-x64\Antea25.dll
+C:\Projects\Antea25\Antea25Website\Antea25\bin\Release\netcoreapp2.0\win-x64\Antea25.pdb
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Release\netcoreapp2.0\win-x64\Antea25.csprojAssemblyReference.cache
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Release\netcoreapp2.0\win-x64\Antea25.csproj.CoreCompileInputs.cache
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Release\netcoreapp2.0\win-x64\UserSecretsAssemblyInfo.cs
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Release\netcoreapp2.0\win-x64\Antea25.AssemblyInfoInputs.cache
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Release\netcoreapp2.0\win-x64\Antea25.AssemblyInfo.cs
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Release\netcoreapp2.0\win-x64\Antea25.dll
+C:\Projects\Antea25\Antea25Website\Antea25\obj\Release\netcoreapp2.0\win-x64\Antea25.pdb
