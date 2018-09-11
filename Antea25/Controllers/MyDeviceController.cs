@@ -53,12 +53,12 @@ namespace Antea25.Controllers
         ///If called by App, we need to pass the userId as argument
         [HttpPost]
         [Route("/api/[controller]/SaveDevice")]
-        public List<Device> SaveDeviceList([FromBody] Device device)
+        public int SaveDevice([FromBody] Device device)
         {
             device.UserId = User.Claims.FirstOrDefault().Value;
             DbContext.Add(device);
             DbContext.SaveChanges();
-            return null;
+            return DbContext.Device.Select(p=>p.DeviceId).LastOrDefault();
         }
     }
 }

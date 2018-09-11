@@ -17,7 +17,7 @@
 
     function addNewDevice() {
         $scope.isAddMode = true;
-        var newDevice = { "deviceId": $scope.deviceList[$scope.deviceList.length - 1].deviceId + 1, "deviceEUI": "", "deviceDescription": "", "dateAdded": new Date(), "isAddMode" : true}
+        var newDevice = { "deviceId": 0, "deviceEUI": "", "deviceDescription": "", "dateAdded": new Date(), "isAddMode" : true}
         $scope.deviceList.push(newDevice);
     };
 
