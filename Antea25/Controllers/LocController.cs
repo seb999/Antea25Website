@@ -34,24 +34,30 @@ namespace Antea25.Controllers
 
          ///If called by App, we need to pass the userId as argument
         [HttpGet]
-        [Route("/api/[controller]/GetGpsData/{userId}")]
-        public List<GpsPosition> GetGpsData(string userId)
+        [Route("/api/[controller]/GetGpsData/{trackedObjectId}/{count}")]
+        public List<GpsPosition> GetGpsData(int trackedObjectId, int count)
         {
             if (User.Identity.IsAuthenticated)
             {
                 // return DbContext.GpsPosition.Where(p => p.UserId == User.Claims.FirstOrDefault().Value).OrderByDescending(p=>p.GpsPositionDate).ToList();
-                return DbContext.GpsPosition.Where(p => p.Device.UserId == User.Claims.FirstOrDefault().Value).OrderByDescending(p=>p.GpsPositionDate).ToList();
+                return DbContext.GpsPosition.Where(p => p.TrackedObject.TrackedObjectId == trackedObjectId && p.TrackedObject.UserId == User.Claims.FirstOrDefault().Value).OrderByDescending(p=>p.GpsPositionDate).Take(count).ToList().OrderBy(p => p.GpsPositionDate).ToList();
             }
-            else
+        
+            return null;
+        }
+        [HttpPost]
+        [Route("/api/[controller]/GetHistoryData")]
+        public List<GpsPosition> GetHistoryData([FromBody]HistoryRequest historyRequest)
+        {
+            if (User.Identity.IsAuthenticated && historyRequest.trackedObjectId.HasValue && historyRequest.start.HasValue && historyRequest.end.HasValue)
             {
-                if(userId!=null)
-                {
-                    return DbContext.GpsPosition.Where(p => p.Device.UserId == User.Claims.FirstOrDefault().Value).OrderByDescending(p=>p.GpsPositionDate).ToList();
-                }
+                // return DbContext.GpsPosition.Where(p => p.UserId == User.Claims.FirstOrDefault().Value).OrderByDescending(p=>p.GpsPositionDate).ToList();
+                return DbContext.GpsPosition.Where(p => p.TrackedObject.TrackedObjectId == historyRequest.trackedObjectId && p.TrackedObject.UserId == User.Claims.FirstOrDefault().Value && p.GpsPositionDate >= historyRequest.start && p.GpsPositionDate <= historyRequest.end).OrderBy(p => p.GpsPositionDate).ToList();
             }
             return null;
         }
 
+        
         ///Called by The Internet network
         ///Transfer position of device to db
         /// usage example : host/api/Loc/SaveData (use postman to simulate)
@@ -64,7 +70,7 @@ namespace Antea25.Controllers
             //EUI is the link between Lora chip and User
             GpsPosition GpsData = new GpsPosition()
             {
-                DeviceId = DbContext.Device.Where(p => p.DeviceEUI == loraData.Hardware_serial).Select(p => p.DeviceId).FirstOrDefault(),
+                TrackedObjectId = DbContext.TrackedObject.Where(p => p.Device.DeviceEUI == loraData.Hardware_serial).Select(p => p.DeviceId).FirstOrDefault(),
                 GpsPositionLatitude = DegreeToDecimal(loraData.Payload_fields.Latitude,loraData.Payload_fields.LatitudeDecimal),
                 GpsPositionLongitude = DegreeToDecimal(loraData.Payload_fields.Longitude,loraData.Payload_fields.LongitudeDecimal),
                 GpsPositionDate = loraData.Metadata.Time,
@@ -104,7 +110,7 @@ namespace Antea25.Controllers
             if(DbContext.Device.Where(p=>p.DeviceEUI == deviceEUI).FirstOrDefault()==null)
                 return false;
             
-            if (DbContext.GpsPosition.Where(p=>p.Device.DeviceEUI == deviceEUI && DateTime.Compare(p.GpsPositionDate, fromThisDate) >0).Count() >0)
+            if (DbContext.GpsPosition.Where(p=>p.TrackedObject.Device.DeviceEUI == deviceEUI && DateTime.Compare(p.GpsPositionDate, fromThisDate) >0).Count() >0)
             result =  true;
             else
             result = false;
@@ -116,7 +122,7 @@ namespace Antea25.Controllers
         [Route("/api/[controller]/GetGps/{deviceEUI}")]
         public List<GpsPosition> GetGps(string deviceEUI)
         {
-            return DbContext.GpsPosition.Where(p => p.Device.DeviceEUI == deviceEUI).OrderByDescending(p=>p.GpsPositionDate).ToList();
+            return DbContext.GpsPosition.Where(p => p.TrackedObject.Device.DeviceEUI == deviceEUI).OrderByDescending(p=>p.GpsPositionDate).ToList();
         }
 
         #endregion

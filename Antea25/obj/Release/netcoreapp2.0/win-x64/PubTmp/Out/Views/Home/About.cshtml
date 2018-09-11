@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="thumbnail">
+            <img src="~/images/prototype.jpg" alt="..." class="img-thumbnail">
+            <div class="caption">
+                <h3>GSM device</h3>
+                <p></p>
+                <p><a href="mailto:sebastien.dubos@gmail.com" class="btn btn-success btn-sm" role="button">Contact</a></p>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-2">
+        <div class="thumbnail">
+            <img src="~/images/LoraProto.jpg" alt="..." class="img-thumbnail">
+            <div class="caption">
+                <h3>Sim less device</h3>
+                <p></p>
+                <img src="~/images/LoRaWAN.png" alt="..." class="img-thumbnail" style="height:40px" >
+                <p><a href="mailto:sebastien.dubos@gmail.com" class="btn btn-success btn-sm" role="button">Contact</a></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<p>It exist 2 type of devices. First type is using a 2g simcard to transfer data to the server, the second type use the lorawan network.</p>
+<p>The server is hosted on Amazon cloud</p>
+
