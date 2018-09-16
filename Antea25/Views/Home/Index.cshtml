@@ -9,30 +9,44 @@
     }
 </style>
 
-<div class="page-header">
+<div class="page-header" style="float:left;margin-top: 15px;margin-bottom: 15px" >
     <h1>IOT system <small>simless GPS trackers</small></h1>
 </div>
 
-<div class="jumbotron" style="height:800px;margin:-15px !important;  background-image:url('images/splash.jpg')">
+<div class="page-header" style="float:right;margin-top: 15px;margin-bottom: 15px" >
+    <img src="~/images/LoRaWAN.png" style="max-height:70px;" />
+    <img src="~/images/TheThingNetwork.svg" style="height:70px;" />
+</div>
+
+<div style="clear:both" />
+<div class="jumbotron" style="height:600px;margin:-15px !important;  background-image:url('images/gamlastan.jpg')">
     <div class="container">
 
         <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner" role="listbox" style="padding-bottom:0px">
                 <div class="item active" style="height:100px;">
                     <div class="carousel-caption" role="option">
-                        <h2 style="color:#2c3e50">
-                            Tired to get your bike stolen ?
+                        <h2 style="color:white">
+                            GSM and simless devices
                         </h2>
                     </div>
                 </div>
                 <div class="item" style="height:100px;">
                     <div class="carousel-caption" role="option">
-                        <h2 style="color:#2c3e50">
-                            Always keep an eye on it...
+                        <h2 style="color:white">
+                            GPS tracking
+                        </h2>
+                    </div>
+                </div>
+                <div class="item" style="height:100px;">
+                    <div class="carousel-caption" role="option">
+                        <h2 style="color:white">
+                            LoRaWAN network system compliance
                         </h2>
                     </div>
                 </div>
@@ -47,7 +61,7 @@
             </a>
         </div>
         <div class="container text-center">
-            <h2 style="color:white; z-index:110; margin-top:70px;font-weight:800">IOT simless solution</h2>
+            <h2 style="color:white; z-index:110; margin-top:45px;font-weight:800">IOT simless solution</h2>
             <br><br><br><br>
 
             <button style="margin-right:5px;margin-left:5px" type="button" class="btn btn-labeled btn-primary btn-sm" onclick="location.href='@Url.Action("Login", "Account")'">
@@ -58,7 +72,7 @@
                 <span class="btn-label btn-lg">CONTACT</span>
             </button>
 
-            <div style="height:150px;margin-top:100px; margin-left:50px !important">
+            <div style="height:150px;margin-top:50px; margin-left:50px !important">
                 <video controls="controls" autoplay="autoplay" loop="loop" style="border:solid;border-color:white;border-width:1px;width:inherit; height:inherit;float:left;margin:1px">
                     <source src="~/images/Antea25_clip.mp4" type="video/mp4" />
                 </video>
@@ -69,7 +83,7 @@
 
 <div class="jumbotron" style="margin:-15px !important">
     <div class="container-fluid">
-        <h2>Track it with Antea25 devices</h2>
+        <h2>Multi device tracking dasboard</h2>
         <div class="text-center"><img src="~/images/mapAntea25.png" style="margin-bottom:60px;box-shadow: 10px 10px 5px #808080" /></div>
         <div>
             <button style="margin-right:5px;margin-left:5px" type="button" class="btn btn-labeled btn-primary btn-sm" onclick="location.href='@Url.Action("About", "Home")'">
@@ -80,7 +94,7 @@
     </div>
 </div>
 
-<div class="jumbotron" style="margin:-15px !important;background-image:url('images/gamlastan.jpg');height:600px">
+<div class="jumbotron" style="margin:-15px !important;background-image:url('images/splash.jpg');height:600px">
     <div class="container">
         <h2 style="color:whitesmoke">GSM and Simless devices</h2>
         <img src="~/images/prototype.jpg" width="300" style="margin-bottom:20px;" />
