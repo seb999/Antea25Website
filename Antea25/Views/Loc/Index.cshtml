@@ -15,7 +15,7 @@
     }
 </style>
     }
-<div ng-app="MyApp" ng-controller="locController" class="custom-container container-fluid" style="padding:0!important;margin:10px -15px!important;height:100%">
+<div ng-app="MyApp" ng-controller="locController" class="custom-container container-fluid" style="padding:0!important;height:100%">
 
     <div  id="map">
 
@@ -28,7 +28,8 @@
             </div>
             <select class="form-control" ng-model="selectedObject" ng-options="p.trackedObjectName for p in trackedObjects" ng-change="filterTable()"></select>
         </div>
-        <div style="clear:both;  margin-bottom:48px;"></div>
+
+        <div style="clear:both;  margin-bottom:64px;"></div>
         <div id="live-tracking-container" ng-class="{active:liveTrackingToolActive,inactive:liveTrackingToolActive == false}">
             <div id="live-tracking-trigger" ng-click="liveTrackingToolClicked()">
                 <a href="#" title="Live tracking"></a>
@@ -67,6 +68,7 @@
 
             </div>
         </div>
+        
         <div style="clear:both;  margin-bottom:64px;"></div>
         <div id="history-tracking-container" ng-class="{active:historyTrackingToolActive,inactive:historyTrackingToolActive == false}">
             <div id="history-tracking-trigger" ng-click="historyTrackingToolClicked()">

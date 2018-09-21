@@ -2,16 +2,31 @@
     ViewData["Title"] = "Home Page";
 }
 
-<style>
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-</style>
 
-<div class="page-header" style="margin-top:10px; margin-bottom:10px">
-    <h1>IOT system <small>simless GPS trackers</small></h1>
-</div>
+@*<div class="page-header">
+        <h1>IOT system <small>simless GPS trackers</small></h1>
+    </div>*@
+
+@*<!-- Header - set the background image for the header in the line below -->
+<header class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1076');">
+    <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200&text=Logo" alt="">
+</header>
+
+<!-- Content section -->
+
+<!-- Image Section - set the background image for the header in the line below -->
+<section class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1081');">
+    <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
+    <div style="height: 200px;"></div>
+</section>
+<!-- Content section -->
+<section class="py-5">
+    <div class="container">
+        <h1>Section Heading</h1>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, suscipit, rerum quos facilis repellat architecto commodi officia atque nemo facere eum non illo voluptatem quae delectus odit vel itaque amet.</p>
+    </div>
+</section>*@
 
 
 @*<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
@@ -45,11 +60,11 @@
         </a>
     </div>*@
 
-<div class="jumbotron" style="background-image:url('images/gamlastan.jpg'); height:600px">
+<section class="py-5" style="background-image:url('images/gamlastan.jpg'); height:600px">
     <div class="container">
         <h1 class="display-4" style="z-index:110; margin-top:30px;color:whitesmoke">IOT simless solution</h1>
         <p class="lead" style="color:whitesmoke">GPS tracker with motion detector that help you to protect your bike </p>
-        <hr class="my-4">
+      
         <p class="lead">
 
             <div style="height:150px;margin-top:100px;">
@@ -67,34 +82,37 @@
             <button style="margin-right:5px;margin-left:5px" type="button" class="btn btn-labeled btn-info" onclick="location.href='@Url.Action("Contact", "Home")'">
                 <span class="btn-label btn-lg">CONTACT</span>
             </button>
-
     </div>
-</div>
+</section>
 
-<div class="jumbotron">
-    <div class="container-fluid">
-        <h2>Multi devices tracking dashboard</h2>
-        <div class="text-center"><img src="~/images/mapAntea25.png" style="margin-bottom:60px;box-shadow: 10px 10px 5px #808080" /></div>
-        <div>
-            <button style="margin-right:5px;margin-left:5px" type="button" class="btn btn-labeled btn-primary btn-sm" onclick="location.href='@Url.Action("About", "Home")'">
-                <span class="btn-label btn-lg">Learn more</span>
-            </button>
-
-        </div>
-    </div>
-</div>
-
-<div class="jumbotron" style="background-image:url('images/splash.jpg');">
+<section class="py-5">
     <div class="container">
-        <h2 style="color:whitesmoke">GSM and Simless devices</h2>
+        <h1>Multi devices tracking dashboard</h1>
+        <p class="lead">Position, speed, historic gps position can be mapped</p>
+        <p>Alarm and notification direclty sent to your mobile phone</p>
+    </div>
+</section>
+
+<section class="py-5" >
+    <img src="~/images/mapAntea25.png" />
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h1>GSM and Simless devices</h1>
+        <p class="lead"></p>
+    </div>
+</section>
+
+<section class="py-5" style="background-image:url('images/splash.jpg');">>
+    <div class="container">
         <img src="~/images/prototype.jpg" width="300" style="margin-bottom:20px;" />
         <div>
             <button style="margin-right:5px;margin-left:5px" type="button" class="btn btn-labeled btn-primary btn-sm" onclick="location.href='@Url.Action("About", "Home")'">
                 <span class="btn-label btn-lg">Learn more</span>
             </button>
-
         </div>
-
     </div>
-</div>
+</section>
+
 

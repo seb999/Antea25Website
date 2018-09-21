@@ -1,40 +1,43 @@
 ﻿@{
     ViewData["Title"] = "About";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+    <h3>@ViewData["Message"]</h3>
 
 
-<div class="row">
-    <div class="col-md-12">
-         <img src="~/images/workflow.jpg" alt="...">
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-2">
-        <div class="thumbnail">
-            <img src="~/images/prototype.jpg" alt="..." class="img-thumbnail">
-            <div class="caption">
-                <h3>GSM device</h3>
-                <p></p>
-            </div>
-        </div>
-
-    </div>
-    <div class="col-md-2" >
-        <div class="thumbnail">
-            <img src="~/images/LoraProto.jpg" alt="..." class="img-thumbnail">
-            <div class="caption">
-                <h3>Sim less device</h3>
-                <p></p>
-                <img src="~/images/LoRaWAN.png" alt="..." class="img-thumbnail" style="height:70px" >
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            <img src="~/images/workflow.jpg" alt="...">
         </div>
     </div>
-</div>
 
-<p>An accelerometer detect motions and GPS position is then sent to the server. </p>
-<p>User is notified on his mobile phone by sms for GSM version or by push notification through our app.</p>
-<p>All the infrastructure is hosted on Amazon and the thing network servers.</p>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="thumbnail">
+                <img src="~/images/prototype.jpg" alt="..." class="img-thumbnail">
+                <div class="caption">
+                    <h3>GSM device</h3>
+                    <p></p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-2">
+            <div class="thumbnail">
+                <img src="~/images/LoraProto.jpg" alt="..." class="img-thumbnail">
+                <div class="caption">
+                    <h3>Sim less device</h3>
+                    <p></p>
+                    <img src="~/images/LoRaWAN.png" alt="..." class="img-thumbnail" style="height:70px">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>An accelerometer detect motions and GPS position is then sent to the server. </p>
+    <p>User is notified on his mobile phone by sms for GSM version or by push notification through our app.</p>
+    <p>All the infrastructure is hosted on Amazon and the thing network servers.</p>
+    </div>
 
