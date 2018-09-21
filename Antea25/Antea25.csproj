@@ -20,6 +20,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\lib\bootstrap\.github\CONTRIBUTING.md" />
+    <None Include="wwwroot\lib\bootstrap\.github\ISSUE_TEMPLATE\bug.md" />
+    <None Include="wwwroot\lib\bootstrap\.github\ISSUE_TEMPLATE\bug_report.md" />
+    <None Include="wwwroot\lib\bootstrap\.github\ISSUE_TEMPLATE\feature.md" />
+    <None Include="wwwroot\lib\bootstrap\.github\ISSUE_TEMPLATE\feature_request.md" />
+    <None Include="wwwroot\lib\bootstrap\.github\SUPPORT.md" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Views\MyDevice\Index.cshtml">
       <!-- <Pack>$(IncludeRazorContentInPack)</Pack> -->
     </Content>
