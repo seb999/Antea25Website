@@ -5,21 +5,21 @@
 <div ng-app="MyApp" ng-controller="myDeviceController" class="custom-container">
 
     <div style="float:left">
-        <button ng-show="!isAddMode" style="margin-right:5px;margin-left:5px;margin-top:15px" type="button" class="btn btn-labeled btn-default btn-sm" ng-click="addNewDevice();">
+        <button ng-show="!isAddMode" style="margin-right:5px;margin-left:5px;margin-top:15px" type="button" class="btn btn-labeled btn-secondary btn-sm" ng-click="addNewDevice();">
             <span class="btn-label btn-lg"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i> Register device</span>
         </button>
 
 
-        <button ng-show="isAddMode" style="margin-right:5px;margin-left:5px;margin-top:15px" type="button" class="btn btn-labeled btn-warning btn-sm" ng-click="saveNewDevice();" ng-cloak>
+        <button ng-show="isAddMode" style="margin-right:5px;margin-left:5px;margin-top:15px" type="button" class="btn btn-labeled btn-info btn-sm" ng-click="saveNewDevice();" ng-cloak>
             <span class="btn-label btn-lg"><i class="glyphicon glyphicon-save" aria-hidden="true"></i> Save device</span>
         </button>
-        <button ng-show="isAddMode" style="margin-right:5px;margin-left:5px;margin-top:15px" type="button" class="btn btn-labeled btn-danger btn-sm" ng-click="cancel();" ng-cloak>
+        <button ng-show="isAddMode" style="margin-right:5px;margin-left:5px;margin-top:15px" type="button" class="btn btn-labeled btn-warning btn-sm" ng-click="cancel();" ng-cloak>
             <span class="btn-label btn-lg"><i class="glyphicon glyphicon-repeat" aria-hidden="true"></i> Cancel</span>
         </button>
 
     </div>
 
-        <div style="float:left;margin-top:10px;margin-bottom:0px" class="alert alert-success " ng-class="{hidden: isSaved == true}" ng-Cloak role="alert">
+        <div style="float:left;margin-top:10px;margin-bottom:0px" class="alert alert-success " ng-show="isSaved != true" ng-Cloak role="alert">
             <strong>Saved! </strong>You can start to use your new device
         </div>
   
