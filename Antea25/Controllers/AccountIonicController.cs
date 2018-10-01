@@ -40,7 +40,7 @@ namespace Antea25.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("/api/[controller]/Login")]
-        public async Task<string> Login([FromBody]LoginViewModel model, string returnUrl = null)
+        public async Task<LoginViewModel> Login([FromBody]LoginViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -52,17 +52,20 @@ namespace Antea25.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return "passed";
+                    model.Result = "passed";
+                    return model;
                 }
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return "Invalid login attempt.";
+                    model.Result = "Invalid login attempt.";
+                    return model;
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return "Invalid login attempt.";
+            model.Result = "Invalid login attempt.";
+            return model;
         }
 
 

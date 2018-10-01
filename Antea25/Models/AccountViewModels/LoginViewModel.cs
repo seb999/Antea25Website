@@ -18,5 +18,7 @@ namespace Antea25.Models.AccountViewModels
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        public string Result { get; set; }
     }
 }
