@@ -13,6 +13,8 @@ using Microsoft.Extensions.Options;
 using Antea25.Models;
 using Antea25.Models.AccountViewModels;
 using Antea25.Services;
+using Antea25.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Antea25.Controllers
 {
@@ -24,8 +26,10 @@ namespace Antea25.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly ApplicationDbContext DbContext;
 
         public AccountIonicController(
+            [FromServices] ApplicationDbContext appDbContext,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
@@ -35,6 +39,7 @@ namespace Antea25.Controllers
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            DbContext = appDbContext;
         }
 
         [HttpPost]
@@ -68,6 +73,12 @@ namespace Antea25.Controllers
             return model;
         }
 
-
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("/api/[controller]/GetUserId/{userEmail}")]
+        public async Task<LoginViewModel> GetUserId(string userEmail){
+            var result =  await DbContext.Users.Where(p=>p.Email == userEmail).Select(p=>p.Id).FirstOrDefaultAsync();
+              return new LoginViewModel(){ UserId = result};
+        }
     }
 }
