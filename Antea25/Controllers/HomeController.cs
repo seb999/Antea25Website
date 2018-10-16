@@ -12,6 +12,7 @@ namespace Antea25.Controllers
     {
         public IActionResult Index()
         {
+             Console.WriteLine("sdfsdfsadfdsfsd");
             return View();
         }
 

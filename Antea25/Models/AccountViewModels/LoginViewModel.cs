@@ -20,6 +20,7 @@ namespace Antea25.Models.AccountViewModels
         public bool RememberMe { get; set; }
 
         public string Result { get; set; }
-         public string UserId { get; set; }
+         
+        public string UserId { get; set; }
     }
 }

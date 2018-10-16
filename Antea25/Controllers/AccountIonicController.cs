@@ -47,6 +47,7 @@ namespace Antea25.Controllers
         [Route("/api/[controller]/Login")]
         public async Task<LoginViewModel> Login([FromBody]LoginViewModel model, string returnUrl = null)
         {
+           Console.WriteLine("Reach API for");
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
