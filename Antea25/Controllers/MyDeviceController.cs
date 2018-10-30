@@ -25,10 +25,12 @@ namespace Antea25.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        ///Return list of device
+        #region Portal method
+
+        ///Return list of device for current userId
         [HttpGet]
-        [Route("/api/[controller]/GetDeviceList/{userId}")]
-        public List<Device> GetDeviceList(string userId)
+        [Route("/api/[controller]/GetDeviceList")]
+        public List<Device> GetDeviceList()
         {
             return DbContext.Device
                     .Where(p => p.UserId == User.Claims.FirstOrDefault().Value)
@@ -46,6 +48,8 @@ namespace Antea25.Controllers
             DbContext.SaveChanges();
             return DbContext.Device.Select(p=>p.DeviceId).LastOrDefault();
         }
+
+        #endregion
 
         #region APP methods
 

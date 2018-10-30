@@ -1,11 +1,9 @@
-﻿
-
-myApp.controller('locController', function ($scope, $log, $http, $window, $timeout, apiService) {
+﻿myApp.controller('locController', function ($scope, $log, $http, $window, $timeout, apiService) {
 
     $scope.map = new MapWrapper({ mapId: "map", center: [25.5, 44.5], zoom: 9, mapType: "STANDARD" });
     $scope.map.init();
     $scope.config = {};
-    loadObjects();
+    loadDeviceList();
     $scope.liveCounts = [1, 10, 20, 50, 100];
     $scope.liveCount = 10;
     $(function () {
@@ -26,18 +24,18 @@ myApp.controller('locController', function ($scope, $log, $http, $window, $timeo
 
     $scope.stopLiveTracking = function () {
         clearInterval($scope.config.liveInterval);
-        
         $scope.liveIsStopped = true;
     }
 
     $scope.startLiveTracking = function () {
-        loadLiveData($scope.selectedObject.trackedObjectId, $scope.liveCount); 
+        loadLiveData($scope.selectedDevice.deviceId, $scope.liveCount); 
         $scope.liveIsStopped = false;
     }
 
     $scope.liveTrackingChanged = function () {
-        loadLiveData($scope.selectedObject.trackedObjectId, $scope.liveCount); 
+        loadLiveData($scope.selectedDevice.deviceId, $scope.liveCount); 
     };
+
     $scope.liveTrackingToolClicked = function () {
         if ($scope.liveTrackingToolActive == true) 
             $scope.liveTrackingToolActive = false;
@@ -60,39 +58,38 @@ myApp.controller('locController', function ($scope, $log, $http, $window, $timeo
     };
     $scope.getHistoryRoute = function () {
         $scope.stopLiveTracking();
-        loadHistoryData($scope.selectedObject.trackedObjectId, $scope.historyStart, $scope.historyEnd);
+        loadHistoryData($scope.selectedDevice.deviceId, $scope.historyStart, $scope.historyEnd);
     }
 
-    function loadObjects() {
-        apiService.getObjects().then(function (response) {
-            $scope.trackedObjects = response.data;
-            if ($scope.trackedObjects.length) {
-                console.log($scope.trackedObjects[0]);
-                $scope.selectedObject = $scope.trackedObjects[0];
-                $scope.config.liveInterval = setTimeout(function () { loadLiveData($scope.selectedObject.trackedObjectId, $scope.liveCount); }, 1000);
+    function loadDeviceList() {
+        apiService.getDeviceList().then(function (response) {
+            $scope.deviceList = response.data;
+            
+            if ($scope.deviceList.length) {
+                console.log($scope.deviceList[0]);
+                $scope.selectedDevice = $scope.deviceList[0];
+                $scope.config.liveInterval = setTimeout(function () { loadLiveData($scope.selectedDevice.deviceId, $scope.liveCount); }, 1000);
             }
         }, function (error) { $log.error(error.message); });
     }
-    function loadLiveData(trackedObjectId, count) {
+
+    function loadLiveData(deviceId, count) {
         $scope.liveLoading = true;
         clearInterval($scope.config.liveInterval);
         $scope.map.clearRoutes();
-        apiService.getLocData(trackedObjectId, count).then(function (response) {              
+        apiService.getLocData(deviceId, count).then(function (response) {              
             $scope.map.addRoute(response.data);
             setTimeout(function () { $scope.liveLoading = false; $scope.$apply();}, 1000);
-            $scope.config.liveInterval = setTimeout(function () { loadLiveData(trackedObjectId, count); }, 15000);
+            $scope.config.liveInterval = setTimeout(function () { loadLiveData($scope.selectedDevice.deviceId, count); }, 15000);
         }, function (error) { $log.error(error.message); });
     };
 
-    function loadHistoryData(trackedObjectId, start, end) {
+    function loadHistoryData(deviceId, start, end) {
         $scope.historyLoading = true;
         $scope.map.clearRoutes();
-        apiService.getHistoryData(trackedObjectId, start, end).then(function (response) {
+        apiService.getHistoryData(deviceId, start, end).then(function (response) {
             $scope.map.addRoute(response.data);
             setTimeout(function () { $scope.historyLoading = false; $scope.$apply(); }, 1000);
         }, function (error) { $log.error(error.message); });
     }
-    
-
-
 });

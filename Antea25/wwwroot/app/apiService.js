@@ -2,19 +2,20 @@
 
     var apiService = {};
 
-    apiService.getLocData = function (trackedObjectId, count) {
+    apiService.getLocData = function (deviceId, count) {
         return $http({
-            url: "api/loc/GetGpsData/" + trackedObjectId + "/" + count,
+            url: "api/loc/GetGpsData/" + deviceId + "/" + count,
             method: "GET",
         })
     };
-    apiService.getHistoryData = function (trackedObjectId, start, end) {
+
+    apiService.getHistoryData = function (deviceId, start, end) {
 
         var s = new Date(start);
         var e = new Date(end);
         return $http({
             url: "api/loc/GetHistoryData",
-            data: JSON.stringify({ "start": s, "end": e, "trackedObjectId": trackedObjectId}),
+            data: JSON.stringify({ "Start": s, "End": e, "DeviceId": deviceId}),
             method: "POST",
             contentType: 'application/json',
             dataType: 'json',
@@ -22,9 +23,9 @@
         })
     };
     
-    apiService.getDeviceList = function (userId) {
+    apiService.getDeviceList = function () {
         return $http({
-            url: "api/myDevice/getDeviceList/" + userId,
+            url: "api/myDevice/getDeviceList",
             method: "GET",
         })
     };

@@ -7,10 +7,12 @@ namespace Antea25.Models
 {
     public class HistoryRequest
     {
-        public DateTime? start { get; set; }
-        public DateTime? end { get; set; }
+        public DateTime? Start { get; set; }
+        public DateTime? End { get; set; }
 
-        public int? trackedObjectId { get; set; }
+        public int? DeviceId { get; set; }
+
+        //public int? trackedObjectId { get; set; }
 
     }
 }

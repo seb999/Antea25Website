@@ -27,7 +27,7 @@
             <div id="select-tracked-object-trigger" ng-click="trackedObjectToolClicked()">
                 <a href="#" title="Select object to track"></a>
             </div>
-            <select class="form-control" ng-model="selectedObject" ng-options="p.trackedObjectName for p in trackedObjects" ng-change="filterTable()"></select>
+            <select class="form-control" ng-model="selectedDevice" ng-options="p.deviceDescription for p in deviceList" ng-change="startLiveTracking()"></select>
         </div>
 
         <div style="clear:both;  margin-bottom:64px;"></div>
@@ -36,19 +36,19 @@
                 <a href="#" title="Live tracking"></a>
             </div>
             <div class="tool-inner-container">
-                <div class="row" id="live-loading-container">
+                <div class="row" >
                     <span ng-show="liveLoading == true" id="live-loading-image"></span>
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
                         <div class="row">
-                            <div class="col-xs-12">
-                                <span class="live-trackedobeject-name">{{selectedObject.trackedObjectName}}</span>
+                            <div>
+                                <span style="margin-left:60px"><b>{{selectedDevice.deviceDescription}}</b></span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12">
-                                <div class="live-count-select-container">
+                            <div >
+                                <div class="live-count-select-container" style="margin-left:60px !important">
                                     Last
                                     <select class="form-control live-count-select" ng-model="liveCount" ng-options="n for n in liveCounts" ng-change="liveTrackingChanged()"></select>
                                     locations
@@ -62,7 +62,6 @@
                     <div class="col-xs-4 start-stop-btns">
                         <button ng-show="!liveIsStopped" class="btn btn-sm" ng-click="stopLiveTracking()"><i class="glyphicon glyphicon-stop"></i> Stop</button>
                         <button ng-show="liveIsStopped" class="btn btn-sm" ng-click="startLiveTracking()"><i class="glyphicon glyphicon-play"></i> Start</button>
-
                     </div>
                 </div>
 
@@ -83,15 +82,15 @@
                     <div class="col-xs-8">
                         <div class="row">
                             <div class="col-xs-12">
-                                <span class="live-trackedobeject-name">{{selectedObject.trackedObjectName}}</span>
+                                <span style="margin-left:60px"><b>{{selectedDevice.deviceDescription}}</b></span>
                             </div>
                         </div>
                         <div class="from-to-container">
-                            <div class="row">
-                                <div class="col-xs-3">
+                            <div class="row" style="margin-left:20px !important">
+                                <div class="col-xs-3" >
                                     from
                                 </div>
-                                <div class="col-xs-9 margin-small">
+                                <div class="col-xs-9 margin-small" >
                                     <div class='input-group date history-datepicker' id="history-datepicker-from">
                                         <input type='text' class="form-control" ng-model="historyStart" />
                                         <span class="input-group-addon">
@@ -101,7 +100,7 @@
                                 </div>
                             </div>
                             <div style="clear:both;  margin-bottom:1em;"></div>
-                            <div class="row">
+                            <div class="row" style="margin-left:20px !important">
                                 <div class="col-xs-3">
                                     to
                                 </div>
@@ -119,9 +118,8 @@
 
 
                     </div>
-                    <div class="col-xs-4 start-stop-btns">
+                    <div class="col-xs-4 start-stop-btns" style="margin-top:85px">
                         <button class="btn btn-sm" ng-click="getHistoryRoute()"><i class="glyphicon glyphicon-upload"></i> Load</button>
-
                     </div>
                 </div>
 
@@ -130,10 +128,11 @@
 
         </div>
     </div>
+
     @*<div class='col-sm-6'>
             <div class="row">
                 <div class="col-sm-3">
-                    <select class="mySelect form-control" ng-model="selectedDevice" ng-options="p.deviceDescription for p in deviceList" ng-change="filterTable()" style="max-width: 250px"></select>
+                    <select class="mySelect form-control" ng-model="selectedDevice" ng-options="p.deviceDescription for p in deviceList" ng-change="startLiveTracking()" style="max-width: 250px"></select>
                 </div>
                 <div class="col-sm-9">
                     <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" items-per-page="itemsPerPage" max-size="maxSize" class="pagination-sm navbar-inverse" boundary-links="true" force-ellipses="true" ng-click="pagination()" style="margin-bottom: 7px; margin-top: 7px"></ul>
