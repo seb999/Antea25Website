@@ -111,7 +111,7 @@ namespace Antea25.Controllers
             if(DbContext.Device.Where(p=>p.DeviceEUI == deviceEUI).FirstOrDefault()==null)
                 return false;
             
-            if (DbContext.GpsPosition.Where(p=>p.TrackedObject.Device.DeviceEUI == deviceEUI && DateTime.Compare(p.GpsPositionDate, fromThisDate) >0).Count() >0)
+            if (DbContext.GpsPosition.Where(p=>p.Device.DeviceEUI == deviceEUI && DateTime.Compare(p.GpsPositionDate, fromThisDate) >0).Count() >0)
             result =  true;
             else
             result = false;
@@ -124,10 +124,7 @@ namespace Antea25.Controllers
         [Route("/api/[controller]/AppGetGpsData/{deviceEUI}/{count}")]
         public List<GpsPosition> AppGetGpsData(string deviceEUI, int count)
         {
-            //Add foreign key to db and do it in one raw
-            var deviceId = DbContext.Device.Where(p=>p.DeviceEUI == deviceEUI).Select(p=>p.DeviceId).FirstOrDefault();
-            return DbContext.GpsPosition.Where(p => p.DeviceId == deviceId).OrderByDescending(p=>p.GpsPositionDate).Take(count).ToList().OrderBy(p => p.GpsPositionDate).ToList();
-
+            return DbContext.GpsPosition.Where(p => p.Device.DeviceEUI == deviceEUI).OrderByDescending(p=>p.GpsPositionDate).Take(count).ToList().OrderBy(p => p.GpsPositionDate).ToList();
         }
 
         #endregion

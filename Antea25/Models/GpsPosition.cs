@@ -7,9 +7,8 @@ namespace Antea25.Models
 {
     public class GpsPosition
     {
-        public long GpsPositionId { get; set; }
-        public long DeviceId { get; set; }
-        public int TrackedObjectId { get; set; }
+        public int GpsPositionId { get; set; }
+        public int DeviceId { get; set; }
         public decimal GpsPositionLatitude { get; set; }
         public decimal GpsPositionLongitude { get; set; }
         public decimal GpsPositionSpeed { get; set; }
@@ -19,6 +18,6 @@ namespace Antea25.Models
         public string GpsPositionLatitudeRaw { get; set; }
         public string GpsPositionLongitudeRaw { get; set; }
 
-         public TrackedObject TrackedObject { get; set; }
+        public Device Device { get; set; }
     }
 }
