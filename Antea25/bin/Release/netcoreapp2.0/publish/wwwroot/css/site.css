@@ -1,0 +1,440 @@
+﻿html{
+    height: 100%;
+}
+
+body {
+    height: 90%;
+    padding-bottom: 0px;
+    padding-top:105px;
+}
+
+
+/*@media (min-width: 992px) {
+    body {
+        padding-top: 56px;
+    }
+}*/
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -90px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+    height: 90px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 24px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
+}
+
+#gmaps {
+    width: 100%;
+    height: 450px;
+}
+
+@media (min-width: 768px) {
+    .custom-container {
+        padding-right: 30px !important;
+        padding-left: 30px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .custom-container {
+        padding-right: 30px !important;
+        padding-left: 30px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .custom-container {
+        padding-right: 90px !important;
+        padding-left: 90px !important;
+    }
+}
+
+.fixed-panel-left {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+th { 
+    background-color:lightslategray;
+}
+#tool-container {
+    position: fixed;
+    right: 32px;
+    top: 140px;
+    width: 292px;
+    height: 100%;
+    pointer-events: none;
+}
+    #tool-container * {
+        pointer-events: all;
+    }
+
+    #live-tracking-container.active {
+        width: 100%;
+        height: 120px;
+        animation-name: activesm;
+        animation-duration: .5s;
+        right: -26px;
+    }
+ #history-tracking-container.active {
+    width: 100%;
+    height: 150px;
+    animation-name: active;
+    animation-duration: .5s;
+    right: -26px;
+}
+#live-tracking-container, #history-tracking-container {
+    position: relative;
+    width: 0;
+    height: 0;
+    float: right;
+    border-radius: 15px;
+    border: 5px solid #eee;
+    background: #fff;
+   
+}
+    #live-tracking-container.inactive {
+        width: 0;
+        height: 0;
+        animation-name: inactivesm;
+        animation-duration: .5s;
+    }
+     #history-tracking-container.inactive {
+        width: 0;
+        height: 0;
+        animation-name: inactive;
+        animation-duration: .5s;
+    }
+
+        #live-tracking-container.inactive div.tool-inner-container, #history-tracking-container.inactive div.tool-inner-container, #live-tracking-container:not(.active) div.tool-inner-container, #history-tracking-container:not(.active) div.tool-inner-container {
+            display: none;
+        }
+    #live-tracking-container.active div.tool-inner-container *, #history-tracking-container.active div.tool-inner-container * {
+        animation-name: show;
+        animation-duration: .5s;
+    }
+
+            #live-tracking-container:after, #history-tracking-container:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: -7px;
+        bottom: -7px;
+        left: -7px;
+        right: -7px;
+        border-radius: 17px;
+        border: 2px solid #999;
+    }
+    #live-tracking-trigger, #live-tracking-container.active #live-tracking-trigger:hover {
+        position: absolute;
+        left: -26px;
+        top: -26px;
+        background-image: url('../images/52px_live_inactive.png');
+        height: 52px;
+        width: 52px;
+        z-index: 15;
+        cursor: pointer;
+    }
+        #live-tracking-container.active #live-tracking-trigger, #live-tracking-trigger:hover {
+            position: absolute;
+            left: -29px;
+            top: -29px;
+            background-image: url('../images/64px_live_active.png');
+            height: 58px;
+            width: 58px;
+            cursor: pointer;
+            z-index: 15;
+        }
+
+    #history-tracking-trigger, #history-tracking-container.active #history-tracking-trigger:hover {
+        position: absolute;
+        left: -23px;
+        top: -23px;
+        background-image: url('../images/52px_history_inactive.png');
+        height: 46px;
+        width: 46px;
+        z-index: 15;
+        cursor: pointer;
+    }
+        #live-loading-container{
+            position:relative;
+        }
+#live-loading-image {
+    position: absolute;
+    left: 45px;
+    background-image: url(../images/live-loading.gif);
+    height: 10px;
+    width: 255px;
+}
+#history-loading-container {
+    position: relative;
+}
+
+
+#history-loading-image {
+    position: absolute;
+    left: 45px;
+    background-image: url(../images/live-loading.gif);
+    height: 10px;
+    width: 255px;
+}
+#history-tracking-container.active #history-tracking-trigger, #history-tracking-trigger:hover {
+    position: absolute;
+    left: -29px;
+    top: -29px;
+    background-image: url('../images/64px_history_active.png');
+    height: 58px;
+    width: 58px;
+    z-index: 15;
+    cursor: pointer;
+}
+
+        #history-tracking-trigger a, #live-tracking-trigger a, #select-tracked-object-trigger  a{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+        #select-tracked-object-container select, #select-tracked-object-container.inactive select {
+            width: 0 !important;
+            height: 0 !important;
+            visibility: collapse;
+        }
+#select-tracked-object-container.active {
+    width: 100% !important;
+}
+#select-tracked-object-container.active select {
+    width: 100% !important;
+    height: 40px !important;
+    visibility: visible;
+}
+
+#select-tracked-object-container {
+    position: relative;
+    float: right;
+    right: -26px;
+}
+    #select-tracked-object-container.active #select-tracked-object-trigger, #select-tracked-object-container #select-tracked-object-trigger:hover {
+        background-image: url('../images/64px_trackedobject.png');
+        position: absolute;
+        left: -29px;
+        top: -29px;
+        height: 58px;
+        width: 58px;
+        z-index: 15;
+        cursor: pointer;
+    }
+
+    #select-tracked-object-container #select-tracked-object-trigger, #select-tracked-object-container.inactive #select-tracked-object-trigger, #select-tracked-object-container.active #select-tracked-object-trigger:hover {
+        background-image: url('../images/64px_trackedobject_inactive.png');
+        position: absolute;
+        left: -23px;
+        top: -23px;
+        height: 46px;
+        width: 46px;
+        z-index: 15;
+        cursor: pointer;
+    }
+
+.live-trackedobeject-name, .live-count-select-container {
+    display: inline-block;
+    z-index: 100;
+    position: relative;
+    margin-top: 1em;
+}
+.live-count-select {
+    width: 60px !important;
+    height: 30px !important;
+    padding: 3px !important;
+    display: inline-block !important;
+}
+.from-to-container {
+    float: right;
+    z-index: 100;
+    position: relative;
+    margin-top: 1em;
+}
+.history-datepicker input {
+    font-size: 10px;
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+    font-family: Arial;
+}
+.history-datepicker input, .history-datepicker .input-group-addon {
+    height: 30px;
+}
+        .history-datepicker .input-group-addon{
+            padding:3px;
+        }
+#live-tracking-container .start-stop-btns {
+    margin-top: 40px;
+    position: relative;
+    z-index: 100;
+}
+#history-tracking-container .start-stop-btns {
+    margin-top: 60px;
+    position: relative;
+    z-index: 100;
+}
+.margin-small{
+    padding:0 5px;
+}
+#map-popup{
+    background:#fff;
+    padding:3px;
+    border:1px solid #999;
+    border-radius:10px;
+}
+/* The animation code */
+@keyframes activesm {
+    0% {
+        width: 0;
+        height: 0;
+    }
+
+    55% {
+        width: 115px;
+        height: 60px;
+    }
+
+    100% {
+        width: 230px;
+        height: 120px;
+    }
+}
+
+@keyframes inactivesm {
+    0% {
+        width: 230px;
+        height: 120px;
+    }
+
+    45% {
+        width: 115px;
+        height: 60px;
+    }
+
+    100% {
+        width: 0;
+        height: 0;
+    }
+}
+@keyframes active {
+    0% {
+        width: 0;
+        height: 0;
+    }
+
+    55% {
+        width: 115px;
+        height: 75px;
+    }
+
+    100% {
+        width: 230px;
+        height: 150px;
+    }
+}
+
+@keyframes inactive {
+    0% {
+        width: 230px;
+        height: 150px;
+    }
+    45% {
+        width: 115px;
+        height: 75px;
+    }
+    100% {
+        width: 0;
+        height: 0;
+    }
+}
+
+
+@keyframes show {
+    0% {
+        visibility:collapse;
+    }
+    99% {
+        visibility: collapse;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+
+/* mikeldi parallax */
+
+.parallax-background {
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    -webkit-background-size: auto;
+    background-size: auto;
+
+    -moz-transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+  
+}
+
+
+@media screen and (min-width: 1000px){.parallax-background {-webkit-background-size: cover;
+    background-size: cover;}
+}
+
+
+
+.parallax-background.pic1{
+background-image: url('../images/gamlastan.jpg');
+}
+
+.parallax-background.pic2{
+    background-image: url('../images/mapAntea25.png');
+    height: 500px
+    }
+
+.parallax-background.pic3{
+    background-image: url('../images/splash.jpg');
+    }
