@@ -1,5 +1,7 @@
 {
-  "FilePath": "/Users/sebastien/DotnetProjects/Antea25Website/Antea25/Antea25.csproj",
+  "ProjectFilePath": "/Users/sebastien/DotnetProjects/Antea25Website/Antea25/Antea25.csproj",
+  "TargetFramework": "netcoreapp2.0",
+  "TagHelpers": [],
   "Configuration": {
     "ConfigurationName": "MVC-2.0",
     "LanguageVersion": "2.0",
@@ -8,8 +10,5 @@
         "ExtensionName": "MVC-2.0"
       }
     ]
-  },
-  "ProjectWorkspaceState": null,
-  "RootNamespace": null,
-  "Documents": []
+  }
 }
